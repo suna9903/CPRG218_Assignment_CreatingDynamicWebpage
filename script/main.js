@@ -126,6 +126,11 @@ async function getMovies(movieTitle) {
              * and call createMovieCard() for each movie object in this array.
              */
 
+            if (filteredMovies.length === 0) {
+                createEmptyView();
+            } else {
+                filteredMovies.forEach(movie => createMovieCard(movie));
+            }
         }
     } catch(exception) {
         console.error("Exception occurred in getMovies function.")
@@ -165,11 +170,13 @@ async function checkPosterURL(movie) {
 function createEmptyView() {
     console.log("createEmptyView");
 
+
     /**
      * TASK : 2
      * Create empty view and append it to "movieCards" section.
      */
-
+    const createEmptyView = createHtmlElement("p", ["noresult"], "No movie found!!! Please search for another title.");
+    document.getElementById("movieCards").appendChild(createEmptyView);
 }
 
 /**
@@ -192,4 +199,21 @@ function createMovieCard(movie) {
      * Create Movie Card and append it "movieCards" section.
      */
 
+    const card = createHtmlElement("article", ["card"]);
+
+    const titleElement = createHtmlElement("p", ["cardTitle"], movie.Title);
+    card.appendChild(titleElement);
+
+    const yearElement = createHtmlElement("p", ["cardYear"], `Year: ${movie.Year}`);
+    card.appendChild(yearElement);
+
+    const posterDiv = createHtmlElement("div", ["cardPosterDiv"]);
+    const posterImg = createHtmlElement("img", ["moviePoster"]);
+    posterImg.src = movie.Poster;
+    posterImg.alt = "Movie poster";
+    posterDiv.appendChild(posterImg);
+
+    card.appendChild(posterDiv);
+
+    document.getElementById("movieCards").appendChild(card);
 }

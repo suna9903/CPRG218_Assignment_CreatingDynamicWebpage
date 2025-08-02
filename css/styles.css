@@ -140,3 +140,20 @@ section {
 }
 
 /* Implement your styling here */
+.card {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #acbcb3;
+    box-shadow: 0 10px 10px rgba(0,0,0,.33);
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+
+}
+
